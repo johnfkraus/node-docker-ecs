@@ -1,26 +1,49 @@
+# node-docker-ecs
 
+To do: clean up this readme file.
 
+This repo is based on the following tutorial:
 
 https://medium.com/avmconsulting-blog/how-to-deploy-a-dockerised-node-js-application-on-aws-ecs-with-terraform-3e6bceb48785
 
+Authentication required for using ECS repo:
 
 aws ecr get-login-password --region us-east-1 --profile terraform-user-pgrm | docker login --username AWS --password-stdin 506504484053.dkr.ecr.us-east-1.amazonaws.com
 
 docker build -t my-first-ecr-repo .
 
+Optional test for Docker image:
 
-Test image:
-docker run -d -p 3000:3000 my-ecr-repo
+docker run -d -p 3000:3000 my-first-ecr-repo
 docker stop [container id]
 
+Tag the image:
+
 docker tag my-first-ecr-repo:latest 506504484053.dkr.ecr.us-east-1.amazonaws.com/my-first-ecr-repo:latest
+
+Push the image to AWS ECR:
+
 docker push 506504484053.dkr.ecr.us-east-1.amazonaws.com/my-first-ecr-repo:latest
 
+Further adventures:
 
-CannotPullContainerError: inspect image has been retried 1 time(s): failed to resolve ref "506504484053.dkr.ecr.us-east-1.amazonaws.com/my-first-ecr-repo:latest": 506504484053.dkr.ecr.us-east-1.amazonaws.com/my-first-ecr-repo:latest: not found
+Build, tag and push SonarQube Developer edition Docker image.
+Add persistent block storage.
+Deploy updated SonarQube with existing PostgreSQL database.
+Integrate existing load balancer.
+
+SonarQube code and documentation Links:
+https://github.com/SonarSource/docker-sonarqube
+https://docs.sonarqube.org/latest/setup/install-server/
+https://github.com/docker-library/docs/tree/master/sonarqube
+
+
+
+
+
+Link:
 
 https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-application-load-balancer.html#alb-sec-group
-
 
 
 ===================
@@ -137,18 +160,9 @@ If this post was helpful, please click the clap 👏 button below a few times to
 AVM Consulting Blog
 AVM Consulting — Clear strategy for your cloud
 
-
-Follow
-536
-
-
-16
-
-
 Related
 
 PROGRAMMING
-
 
 How to Upload a Binary File to Amazon S3 Bucket via API Gateway
 PROGRAMMING
@@ -160,39 +174,12 @@ create it… terminal, push it… S3
 In this post, we use the linux shell to generate a bunch of files, add some text to each file, push all the files to S3, then read the…
 PROGRAMMING
 
-
 Creating a Continuous Deployment workflow using Github Actions to deploy your application to ECS
 Sign up for AVM Consulting
 By AVM Consulting Blog
 We are developing blogging to help community with Cloud/DevOps services Take a look.
 
-
 Get this newsletter
-Emails will be sent to johnkraus3@gmail.com.Not you?
-
-AWS
-JavaScript
-Docker
-Containers
-Programming
-536
-
-
-16
-
-
-
-
-
-
 
 Andrew Bestbier
 WRITTEN BY
-
-Andrew Bestbier
-Follow
-
-Hi! I am a JavaScript developer based in London. I love reading and writing about JavaScript, AWS and all things coding.
-
-AVM Consulting Blog
-AVM Consulting Blog
