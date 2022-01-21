@@ -85,20 +85,6 @@ resource "aws_default_subnet" "default_subnet_b" {
 #   availability_zone = "us-east-1c"
 # }
 
-# resource "aws_ecs_service" "my_first_service" {
-#   name            = "my-first-service"                        # Naming our first service
-#   cluster         = aws_ecs_cluster.my_cluster.id             # Referencing our created Cluster
-#   task_definition = aws_ecs_task_definition.my_first_task.arn # Referencing the task our service will spin up
-#   launch_type     = "FARGATE"
-#   desired_count   = 3 # Setting the number of containers we want deployed to 3
-
-#   network_configuration {
-#     subnets          = ["${aws_default_subnet.default_subnet_a.id}", "${aws_default_subnet.default_subnet_b.id}", "${aws_default_subnet.default_subnet_c.id}"]
-#     assign_public_ip = true # Providing our containers with public IPs
-#   }
-# }
-
-
 resource "aws_ecs_service" "my_first_service" {
   name            = "my-first-service"                        # Naming our first service
   cluster         = aws_ecs_cluster.my_cluster.id             # Referencing our created Cluster
@@ -120,9 +106,6 @@ resource "aws_ecs_service" "my_first_service" {
   }
 }
 
-
-
-
 resource "aws_alb" "application_load_balancer" {
   name               = "test-lb-tf" # Naming our load balancer
   load_balancer_type = "application"
@@ -134,7 +117,6 @@ resource "aws_alb" "application_load_balancer" {
   subnets = [ # Referencing the default subnets
     "${aws_default_subnet.default_subnet_a.id}",
   "${aws_default_subnet.default_subnet_b.id}"]
-
 
   # Referencing the security group
   security_groups = ["${aws_security_group.load_balancer_security_group.id}"]
@@ -194,11 +176,6 @@ resource "aws_security_group" "service_security_group" {
     protocol    = "-1"          # Allowing any outgoing protocol 
     cidr_blocks = ["0.0.0.0/0"] # Allowing traffic out to all IP addresses
   }
-}
-
-
-output "lb_tg_name" {
-  value = aws_lb_target_group.target_group.name
 }
 
 output "lb_dns_name" {
