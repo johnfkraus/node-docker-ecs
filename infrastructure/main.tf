@@ -5,6 +5,7 @@ provider "aws" {
     tags = {
       Owner   = "John Kraus"
       Project = "How to Deploy a Dockerised Application on AWS ECS With Terraform"
+      MyTag = "Demo"
     }
   }
 }
@@ -41,10 +42,8 @@ resource "aws_ecs_task_definition" "my_first_task" {
   DEFINITION
   requires_compatibilities = ["FARGATE"] # Stating that we are using ECS Fargate
   network_mode             = "awsvpc"    # Using awsvpc as our network mode as this is required for Fargate
-  cpu                      = 1024
-  memory                   = 2048
-  # memory                   = 512         # Specifying the memory our container requires
-  # cpu                      = 256         # Specifying the CPU our container requires
+  memory                   = 512         # Specifying the memory our container requires
+  cpu                      = 256         # Specifying the CPU our container requires
   execution_role_arn = aws_iam_role.ecsTaskExecutionRole2.arn
 }
 

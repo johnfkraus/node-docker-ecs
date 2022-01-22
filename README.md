@@ -2,17 +2,17 @@
 
 To do: clean up this readme file.
 
-This repo is based on the following tutorial:
+This repo is based on the following tutorial: https://medium.com/avmconsulting-blog/how-to-deploy-a-dockerised-node-js-application-on-aws-ecs-with-terraform-3e6bceb48785
 
-https://medium.com/avmconsulting-blog/how-to-deploy-a-dockerised-node-js-application-on-aws-ecs-with-terraform-3e6bceb48785
+My Github repo for this code is here: https://github.com/johnfkraus/node-docker-ecs
 
-Authentication required for using ECS repo:
+Authentication is required for using ECS repo:
 
 aws ecr get-login-password --region us-east-1 --profile terraform-user-pgrm | docker login --username AWS --password-stdin 506504484053.dkr.ecr.us-east-1.amazonaws.com
 
 docker build -t my-first-ecr-repo .
 
-Optional test for Docker image:
+OPTIONAL test for Docker image:
 
 docker run -d -p 3000:3000 my-first-ecr-repo
 docker stop [container id]
@@ -45,6 +45,8 @@ Link:
 
 https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-application-load-balancer.html#alb-sec-group
 
+This Udemy.com course was reasonably up-to-date and covered everything you need know to get the Terraform associate certification.  I purchased it on sale for $12.99.
+https://www.udemy.com/course/terraformcertified/
 
 ===================
 How to Deploy a Dockerised Application on AWS ECS With Terraform
