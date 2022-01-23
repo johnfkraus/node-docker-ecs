@@ -25,6 +25,15 @@ Push the image to AWS ECR:
 
 docker push 506504484053.dkr.ecr.us-east-1.amazonaws.com/my-first-ecr-repo:latest
 
+### To create a graph of our Terraform demo infrastructure:
+(Requires dot executable)
+
+terraform graph > graph.dot
+dot -Tpng graph.dot -ograph.png
+
+See infrastructure/graph.png
+
+
 Further adventures:
 
 Build, tag and push SonarQube Developer edition Docker image.
@@ -47,6 +56,13 @@ https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-application-l
 
 This Udemy.com course was reasonably up-to-date and covered everything you need know to get the Terraform associate certification.  I purchased it on sale for $12.99.
 https://www.udemy.com/course/terraformcertified/
+
+
+
+
+
+
+
 
 ===================
 How to Deploy a Dockerised Application on AWS ECS With Terraform

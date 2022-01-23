@@ -1,0 +1,54 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_alb.application_load_balancer (expand)" [label = "aws_alb.application_load_balancer", shape = "box"]
+		"[root] aws_default_subnet.default_subnet_a (expand)" [label = "aws_default_subnet.default_subnet_a", shape = "box"]
+		"[root] aws_default_subnet.default_subnet_b (expand)" [label = "aws_default_subnet.default_subnet_b", shape = "box"]
+		"[root] aws_default_vpc.default_vpc (expand)" [label = "aws_default_vpc.default_vpc", shape = "box"]
+		"[root] aws_ecr_repository.my_first_ecr_repo (expand)" [label = "aws_ecr_repository.my_first_ecr_repo", shape = "box"]
+		"[root] aws_ecs_cluster.my_cluster (expand)" [label = "aws_ecs_cluster.my_cluster", shape = "box"]
+		"[root] aws_ecs_service.my_first_service (expand)" [label = "aws_ecs_service.my_first_service", shape = "box"]
+		"[root] aws_ecs_task_definition.my_first_task (expand)" [label = "aws_ecs_task_definition.my_first_task", shape = "box"]
+		"[root] aws_iam_role.ecsTaskExecutionRole2 (expand)" [label = "aws_iam_role.ecsTaskExecutionRole2", shape = "box"]
+		"[root] aws_iam_role_policy_attachment.ecsTaskExecutionRole_policy (expand)" [label = "aws_iam_role_policy_attachment.ecsTaskExecutionRole_policy", shape = "box"]
+		"[root] aws_lb_listener.listener (expand)" [label = "aws_lb_listener.listener", shape = "box"]
+		"[root] aws_lb_target_group.target_group (expand)" [label = "aws_lb_target_group.target_group", shape = "box"]
+		"[root] aws_security_group.load_balancer_security_group (expand)" [label = "aws_security_group.load_balancer_security_group", shape = "box"]
+		"[root] aws_security_group.service_security_group (expand)" [label = "aws_security_group.service_security_group", shape = "box"]
+		"[root] data.aws_iam_policy_document.assume_role_policy (expand)" [label = "data.aws_iam_policy_document.assume_role_policy", shape = "box"]
+		"[root] output.lb_dns_name" [label = "output.lb_dns_name", shape = "note"]
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" [label = "provider[\"registry.terraform.io/hashicorp/aws\"]", shape = "diamond"]
+		"[root] aws_alb.application_load_balancer (expand)" -> "[root] aws_default_subnet.default_subnet_a (expand)"
+		"[root] aws_alb.application_load_balancer (expand)" -> "[root] aws_default_subnet.default_subnet_b (expand)"
+		"[root] aws_alb.application_load_balancer (expand)" -> "[root] aws_security_group.load_balancer_security_group (expand)"
+		"[root] aws_default_subnet.default_subnet_a (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_default_subnet.default_subnet_b (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_default_vpc.default_vpc (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_ecr_repository.my_first_ecr_repo (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_ecs_cluster.my_cluster (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_ecs_service.my_first_service (expand)" -> "[root] aws_default_subnet.default_subnet_a (expand)"
+		"[root] aws_ecs_service.my_first_service (expand)" -> "[root] aws_default_subnet.default_subnet_b (expand)"
+		"[root] aws_ecs_service.my_first_service (expand)" -> "[root] aws_ecs_cluster.my_cluster (expand)"
+		"[root] aws_ecs_service.my_first_service (expand)" -> "[root] aws_ecs_task_definition.my_first_task (expand)"
+		"[root] aws_ecs_service.my_first_service (expand)" -> "[root] aws_lb_target_group.target_group (expand)"
+		"[root] aws_ecs_service.my_first_service (expand)" -> "[root] aws_security_group.service_security_group (expand)"
+		"[root] aws_ecs_task_definition.my_first_task (expand)" -> "[root] aws_ecr_repository.my_first_ecr_repo (expand)"
+		"[root] aws_ecs_task_definition.my_first_task (expand)" -> "[root] aws_iam_role.ecsTaskExecutionRole2 (expand)"
+		"[root] aws_iam_role.ecsTaskExecutionRole2 (expand)" -> "[root] data.aws_iam_policy_document.assume_role_policy (expand)"
+		"[root] aws_iam_role_policy_attachment.ecsTaskExecutionRole_policy (expand)" -> "[root] aws_iam_role.ecsTaskExecutionRole2 (expand)"
+		"[root] aws_lb_listener.listener (expand)" -> "[root] aws_alb.application_load_balancer (expand)"
+		"[root] aws_lb_listener.listener (expand)" -> "[root] aws_lb_target_group.target_group (expand)"
+		"[root] aws_lb_target_group.target_group (expand)" -> "[root] aws_default_vpc.default_vpc (expand)"
+		"[root] aws_security_group.load_balancer_security_group (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_security_group.service_security_group (expand)" -> "[root] aws_security_group.load_balancer_security_group (expand)"
+		"[root] data.aws_iam_policy_document.assume_role_policy (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] output.lb_dns_name" -> "[root] aws_alb.application_load_balancer (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_ecs_service.my_first_service (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_iam_role_policy_attachment.ecsTaskExecutionRole_policy (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_lb_listener.listener (expand)"
+		"[root] root" -> "[root] output.lb_dns_name"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)"
+	}
+}
+
